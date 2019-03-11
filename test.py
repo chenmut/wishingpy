@@ -80,6 +80,7 @@ print(sum)
 d = {'Michael':95, 'Bob':75, 'Tracy':85}
 d["Michael"]
 
+## set是一个无序不重复元素集
 s = set([1, 2, 3, 4])
 s = set([1, 2, 3, 4, (1, 2, 3)])
 s
@@ -121,4 +122,108 @@ def power(x, n):
 print(power(5, 9))
 
 # func(*args, **kw)
+
+## 切片
+L = list(range(100))
+L[:10]
+L[-10:]
+L[10:20]
+L[:10:2]
+L[::5]
+
+(0, 1, 2, 3, 4, 5)[:3]
+
+'ABCDEFG'[::2]
+
+# from collections import Iterable
+# isinstance('abc', Iterable)
+# isinstance([1, 2, 3], Iterable)
+# isinstance(123, Iterable)
+
+
+for i, value in enumerate(['A', 'B', 'C', 'D']):
+    print(i, value)
+
+## 列表生成式
+list(range(1, 11))
+
+L = []
+for x in range(1, 11):
+    L.append(x * x)
+
+[x * x for x in range(1, 11)]
+[x * x for x in range(1, 11) if x % 2 == 0]
+
+import os
+[d for d in os.listdir('.')]
+
+g = (x * x for x in range(10))
+g
+next(g)
+
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+
+f = fib(6)
+f
+
+for n in fib(6):
+    print(n)
+
+g = fib(6)
+while True:
+    try:
+        x = next(g)
+        print('g:', x)
+    except StopIteration as e:
+        print('Generator return value:', e.value)
+        break
+
+## 函数式编程（build-in)，变量
+abs 
+## map/reduce
+# map()函数接收两个参数，一个是函数，一个是Iterable，map将传入的函数依次作用到序列的每个元素，并把结果作为新的Iterator返回
+# reduce把一个函数作用在一个序列[x1, x2, x3, ...]上，这个函数必须接收两个参数，reduce把结果继续和序列的下一个元素做累积计算
+
+from functools import reduce
+def add(x, y):
+    return x + y
+
+reduce(add, [1, 3, 5, 7, 9])
+
+sorted([36, 5, -12, 9, -21])
+
+## 模块
+# mycompany
+# ├─ __init__.py
+# ├─ abc.py
+# └─ xyz.py
+
+# mycompany.abc  mycompany.xyz
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+' a test module '
+
+__author__ = 'Michael Liao'
+
+import sys
+
+def test():
+    args = sys.argv
+    if len(args)==1:
+        print('Hello, world!')
+    elif len(args)==2:
+        print('Hello, %s!' % args[1])
+    else:
+        print('Too many arguments!')
+
+if __name__=='__main__':
+    test()
 
