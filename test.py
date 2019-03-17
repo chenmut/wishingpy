@@ -227,3 +227,42 @@ def test():
 if __name__=='__main__':
     test()
 
+# 面向对象编程
++ 类：class 
++ 示例：instance
+
+class Student(object):
+    pass
+
+tcl = Student()
+tcl
+Student
+tcl.name = 'tian chenmu'
+tcl.name
+
+class Student2(object):
+
+    def __init__(self, name, score):
+        self.name = name
+        self.score = score
+
+tcl = Student2('tian chenmu', 70)
+tcl.name 
+tcl.score
+
+## 2个下划线__代表私有变量（private）
+
+# 文件操作
+##操作文件和目录 
+import os 
+os.name
+os.uname()
+os.environ
+os.environ.get('key')
+os.environ.get('PATH')
+
+# 进程、线程
+## 多进程
+import os 
+print('Process (%s) start...' % os.getpid())
+
